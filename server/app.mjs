@@ -14,7 +14,7 @@ import problemRoutes from './routes/problemRoutes.mjs';
 app.use(express.json()); // Parse JSON requests
 app.use(cookieParser()); // Parse cookies
 app.use(cors({ 
-    origin: "http://localhost:5173", // Replace with frontend URL
+    origin: "https://devcampuscoder.netlify.app/", // Replace with frontend URL
     credentials: true // Allow cookies
 }));
 
