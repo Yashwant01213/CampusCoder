@@ -13,10 +13,26 @@ import problemRoutes from './routes/problemRoutes.mjs';
 
 app.use(express.json()); // Parse JSON requests
 app.use(cookieParser()); // Parse cookies
-app.use(cors({ 
-    origin: "https://devcampuscoder.netlify.app/", // Replace with frontend URL
-    credentials: true // Allow cookies
-}));
+// app.use(cors({ 
+//     // origin: "https://devcampuscoder.netlify.app/", // Replace with frontend URL
+//     origin: "http://localhost:5173",
+//     credentials: true // Allow cookies
+// }));
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://devcampuscoder.netlify.app'
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true // if you're sending cookies/auth headers
+  }));
 
 connectDB();
 app.use("/api/auth", authRoutes);

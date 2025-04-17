@@ -47,15 +47,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   //   }
   //   setIsLoading(false);
   // }, []);
+  const API_BASE = import.meta.env.VITE_API_BASE;
+
+
   useEffect(() => {
-    axios.get("http://localhost:4000/api/auth/me", { withCredentials: true })
+    axios.get(`${API_BASE}/api/auth/me`, { withCredentials: true })
       .then(res => setUser(res.data.user))
       .catch(() => setUser(null));
   }, []);
 
   const login = async (email: string, password: string) => {
-    await axios.post("http://localhost:4000/api/auth/login", { email, password }, { withCredentials: true });
-    const res = await axios.get("http://localhost:4000/api/auth/me", { withCredentials: true });
+    await axios.post(`${API_BASE}/api/auth/login`, { email, password }, { withCredentials: true });
+    const res = await axios.get(`${API_BASE}/api/auth/me`, { withCredentials: true });
     setUser(res.data.user);
   };
 
@@ -85,19 +88,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // };
 
   const register = async (name: string, email: string, password: string, role: string, institution: string) => {
-    await axios.post("http://localhost:4000/api/auth/register", 
+    await axios.post(`${API_BASE}/api/auth/register`, 
         { name, email, password, role, institution }, 
         { withCredentials: true }  // Important for cookies & authentication
     );
 
     // Fetch user data after successful registration
-    const res = await axios.get("http://localhost:4000/api/auth/me", { withCredentials: true });
+    const res = await axios.get(`${API_BASE}/api/auth/me`, { withCredentials: true });
     setUser(res.data.user);
 };
 
   const logout = async () => {
     try {
-        await fetch("http://localhost:4000/api/auth/logout", {
+        await fetch(`{API_BASE}/api/auth/logout`, {
             method: "POST",
             credentials: "include" // Important to include cookies
         });
