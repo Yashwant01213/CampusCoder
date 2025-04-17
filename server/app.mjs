@@ -35,7 +35,7 @@ const allowedOrigins = [
   }));
 
 app.use(cors({ 
-    origin: "https://devcampuscoder.netlify.app/login", // Replace with frontend URL
+    origin: "https://devcampuscoder.netlify.app/", // Replace with frontend URL
     credentials: true // Allow cookies
 }));
 
