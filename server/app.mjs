@@ -34,6 +34,12 @@ const allowedOrigins = [
     credentials: true // if you're sending cookies/auth headers
   }));
 
+app.use(cors({ 
+    origin: "https://devcampuscoder.netlify.app/login", // Replace with frontend URL
+    credentials: true // Allow cookies
+}));
+
+
 connectDB();
 app.use("/api/auth", authRoutes);
 //app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
