@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
     "@monaco-editor/react": "^4.7.0",
     "axios": "^1.8.4",
     "clsx": "^2.1.1",
